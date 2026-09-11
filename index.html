@@ -57,29 +57,62 @@ h1 span{color:#39d9a2}
  <p class="sub">Latest APK</p>
  <p class="date">Updated: 20/09/2026</p>
 
- <div class="buttons">
-   <!-- Random example download link -->
-   <a class="btn download" href="https://telegram.me/DownloadlyioBot?start=BQADAQADfBMAAmBGGEX6eKa1HgLnlxYE">↓ Download APK</a>
-   <a class="btn share" href="https://t.me/DownloadlyioBot">↗ Share</a>
- </div>
+<div class="buttons">
+  <a class="btn download"
+     href="https://telegram.me/DownloadlyioBot?start=BQADAQADfBMAAmBGGEX6eKa1HgLnlxYE"
+     onclick="showToast()">
+    ↓ Download APK
+  </a>
+
+  <a class="btn share"
+     href="https://t.me/DownloadlyioBot?start=BQADAQADqBMAAmBGGEVUY7V59n7wjBYE"
+     onclick="showToast()">
+    ↗ Share
+  </a>
 </div>
 
+<div id="toast">
+  Your Download Link Has Been Successfully Sent To Bot ✅
+</div>
+</div>
+
+<style>
+#toast{
+  visibility:hidden;
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%) translateY(20px);
+  background:#10251f;
+  color:#fff;
+  border:1px solid #35d6a0;
+  padding:13px 18px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:700;
+  text-align:center;
+  z-index:9999;
+  transition:.3s;
+  width:max-content;
+  max-width:90%;
+}
+
+#toast.show{
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+</style>
+
 <script>
-async function sharePage(){
- const data={
-   title:"MovieBox Pro",
-   text:"Download MovieBox Pro APK",
-   url:location.href
- };
- try{
-   if(navigator.share){
-     await navigator.share(data);
-   }else{
-     await navigator.clipboard.writeText(location.href);
-     alert("Link copied!");
-   }
- }catch(e){}
+function showToast(){
+  const toast = document.getElementById("toast");
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
 }
 </script>
+
 </body>
 </html>
